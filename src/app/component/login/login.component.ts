@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HttpParams} from "@angular/common/http";
-import {LoginResponse} from "../../model";
 import {LoginService} from "../../service/login.service";
 import {Router} from "@angular/router";
 
@@ -13,7 +11,6 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
   loginForm: FormGroup;
-  loginResponse: LoginResponse | undefined;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) {
     this.loginForm = this.formBuilder.group({
@@ -23,18 +20,18 @@ export class LoginComponent {
   }
 
   runLogin() {
-    this.loginService.getLoginResponse(
+    this.loginService.login(
       this.loginForm.get('username')?.value,
       this.loginForm.get('password')?.value,
     ).subscribe(loginResponse => {
-      this.loginForm.reset()
-      this.loginResponse = loginResponse;
+        this.loginForm.reset()
 
-      if (loginResponse.jwt != ""){
-        localStorage.setItem("token", loginResponse.jwt)
-        this.router.navigate(['/']);
+        if (loginResponse.jwt != "") {
+          this.loginService.setLoggedIn(loginResponse);
+          this.router.navigate(['/']);
+        }
       }
-    })
+    )
   }
 
 
