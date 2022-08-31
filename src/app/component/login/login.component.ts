@@ -22,20 +22,6 @@ export class LoginComponent {
     })
   }
 
-  // runLogin(): void {
-  //   let params = new HttpParams()
-  //     .set('username', this.loginForm.get('username')?.value)
-  //     .set('password', this.loginForm.get('password')?.value)
-  //
-  //   this.loginService.getLoginResponse(params).subscribe(loginResponse => {
-  //     this.loginForm.reset();
-  //     this.loginResponse = loginResponse;
-  //   }, error => {
-  //     alert(`ERROR: ${error.error.message}`);
-  //   })
-  // }
-
-
   runLogin() {
     this.loginService.getLoginResponse(
       this.loginForm.get('username')?.value,
@@ -45,6 +31,7 @@ export class LoginComponent {
       this.loginResponse = loginResponse;
 
       if (loginResponse.jwt != ""){
+        localStorage.setItem("token", loginResponse.jwt)
         this.router.navigate(['/']);
       }
     })
