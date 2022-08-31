@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <form [formGroup]="loginForm" (submit)="runLogin()" class="mb-5">
+
+    <div class="form-group" style="padding-bottom: 20px">
+
+      <label for="username">Username</label>
+      <input type="username" class="form-control" id="username" placeholder="Username" [formControlName]="'username'">
+      <div class="error-message text-danger" *ngIf="loginForm.get('username')"> Username is
+        required!
+      </div>
+
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [formControlName]="'password'">
+      <div class="error-message text-danger" *ngIf="loginForm.get('password')"> Password is
+        required!
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
