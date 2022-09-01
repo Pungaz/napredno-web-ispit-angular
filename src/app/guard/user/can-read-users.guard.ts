@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {CanActivate} from '@angular/router';
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../service/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanReadUsersGuard implements CanActivate {
-
   constructor(public authService: AuthService) {
   }
 
@@ -19,6 +18,4 @@ export class CanReadUsersGuard implements CanActivate {
     }
     return false;
   }
-
-
 }

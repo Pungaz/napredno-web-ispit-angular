@@ -13,7 +13,7 @@ import {AuthService} from '../service/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
+export class AuthGuard implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {
   }
 
@@ -22,14 +22,6 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
       this.router.navigate(['login']);
       return false;
     }
-    return true;
-  }
-
-  canDeactivate(
-    component: unknown,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
 

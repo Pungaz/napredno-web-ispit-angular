@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './component/app/app.component';
+import {HeaderComponent} from './component/app/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HomeComponent} from "./component/home/home.component";
-import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatRippleModule} from "@angular/material/core";
@@ -15,10 +15,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {UserCreateComponent} from './component/user-create/user-create.component';
 import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+import {JwtInterceptorService} from "./interceptor/jwt-interceptor.service";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    HeaderComponent,
     HomeComponent,
     LoginComponent,
     UserCreateComponent,
@@ -42,9 +43,10 @@ import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
   ],
   exports: [],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
     JwtHelperService
-  ], bootstrap: [AppComponent]
+  ], bootstrap: [HeaderComponent]
 })
 export class AppModule {
 }

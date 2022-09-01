@@ -4,9 +4,9 @@
       <a [routerLink]="''" class="navbar-brand">Home</a>
       <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a [routerLink]="'login'" class="nav-link active" aria-current="page">Login</a>
+          <a *ngIf="!this.isLoggedIn()" [routerLink]="'login'" class="nav-link active" aria-current="page">Login</a>
           <a [routerLink]="'user/create'" class="nav-link active" aria-current="page">Create a new user</a>
-
+          <button (click)="logout()" *ngIf="this.isLoggedIn()" type="button" class="btn btn-primary float-end">Logout</button>
           <!--          <a [routerLink]="'/history'" class="nav-link active" aria-current="page">History</a>-->
           <!--          <a [routerLink]="'/entity extraction'" class="nav-link active" aria-current="page">Entity extraction</a>-->
           <!--          <a [routerLink]="'/text similarity'" class="nav-link active" aria-current="page">Text similarity</a>-->

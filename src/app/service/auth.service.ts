@@ -13,7 +13,7 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const loggedIn = localStorage.getItem('STATE');
-    const token = localStorage.getItem('token');
+    const token = this.getToken();
 
     if (loggedIn && token) {
       return !this.jwtHelper.isTokenExpired(token);
@@ -33,20 +33,10 @@ export class AuthService {
     return [];
   }
 
+  public getToken(): string | null {
+    return localStorage.getItem('token');
+  }
 
-  // isLoggedIn() {
-  //   const loggedIn = localStorage.getItem('STATE');
-  //   if (loggedIn == 'true')
-  //     this.loginService.isLogin = true;
-  //   else
-  //     this.isLogin = false;
-  //   return this.isLogin;
-  // }
-
-  // getRole() {
-  //   this.roleAs = localStorage.getItem('ROLE');
-  //   return this.roleAs;
-  // }
 
 }
 

@@ -1,3 +1,59 @@
 <div class="container-fluid">
-  <p>user-create works!</p>
+  <form [formGroup]="userCreateForm" (submit)="createUser()" class="mb-5">
+
+    <div class="form-group" style="padding-bottom: 20px">
+      <label for="username">Username</label>
+      <input type="username" class="form-control" id="username" placeholder="Username" [formControlName]="'username'">
+      <div class="error-message text-danger" *ngIf="userCreateForm.get('username')?.errors?.['required']">Username is
+        required!
+      </div>
+    </div>
+
+    <div class="form-group" style="padding-bottom: 20px">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [formControlName]="'password'">
+      <div class="error-message text-danger" *ngIf="userCreateForm.get('password')?.errors?.['required']">Password is
+        required!
+      </div>
+    </div>
+
+
+    <div class="form-group" style="padding-bottom: 20px">
+      <label for="firstname">First Name</label>
+      <input type="firstname" class="form-control" id="firstname" placeholder="First name"
+             [formControlName]="'firstname'">
+      <div class="error-message text-danger" *ngIf="userCreateForm.get('firstname')?.errors?.['required']">First name is
+        required!
+      </div>
+    </div>
+
+
+    <div class="form-group" style="padding-bottom: 20px">
+      <label for="password">Last name</label>
+      <input type="lastname" class="form-control" id="lastname" placeholder="Last name" [formControlName]="'lastname'">
+      <div class="error-message text-danger" *ngIf="userCreateForm.get('lastname')?.errors?.['required']">Last name is
+        required!
+      </div>
+    </div>
+
+    <div class="form-group" style="padding-bottom: 20px">
+      <label for="address">Address</label>
+      <input type="address" class="form-control" id="address" placeholder="Address" [formControlName]="'address'">
+      <div class="error-message text-danger" *ngIf="userCreateForm.get('address')?.errors?.['required']">Address is
+        required!
+      </div>
+    </div>
+
+    <div *ngFor="let data of AllAvailablePermissions; let i=index">
+      <label>
+        <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />
+        {{data.name}}
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
 </div>
+
+
