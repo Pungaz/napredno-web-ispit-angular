@@ -10,7 +10,6 @@ import {AuthService} from "../../service/auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private authService: AuthService) {

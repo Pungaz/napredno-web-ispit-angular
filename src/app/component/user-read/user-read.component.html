@@ -1,20 +1,42 @@
 <div *ngIf="users">
   <div *ngFor="let user of users" class="container-fluid">
-    <ul>
-      <li>{{user.id}}, {{user.firstname}}, {{user.lastname}}, {{user.username}}, {{user.address}}, {{user.userPermissions}}, {{user.machines}}</li>
-      <br>
-    </ul>
+    <div style="display: inline-block; width: 50%">
+      <ul>
+        <li>
+          <div>
+            <div style="display: inline-block; width: 50%">
+              Id: {{user.id}}
+            </div>
+            <div style="display: inline-block; width: 50%; height: 100%; top: 50%" class="mat-button">
+              <a *ngIf="this.canDeleteUsers()" [routerLink]="['/user/delete', user.id]" class="alert-link"
+                 aria-current="page">Delete
+                user</a>
+            </div>
+          </div>
+          <div>First name: {{user.firstname}} </div>
+          <div>Last name: {{user.lastname}}</div>
+          <a *ngIf="this.canUpdateUsers()" [routerLink]="['/user/update', user.id]" class="alert-link"
+             aria-current="page">Username: {{user.username}}</a>
+          <div *ngIf="!this.canUpdateUsers()">Username: {{user.username}} </div>
+          <div>Address: {{user.address}} </div>
+          <div> Permissions:
+            <ul *ngFor="let permission of user.userPermissions">
+              <li>{{permission.permissionName}}</li>
+            </ul>
+          </div>
+          <div> Machines:
+            <ul *ngFor="let machine of user.machines">
+              <li>
+                <div>Id: {{machine.id}}</div>
+                <div>Name: {{machine.name}}</div>
+                <div>Created at: {{machine.dateCreated}}</div>
+                <div>Status: {{machine.status}}</div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <br>
+      </ul>
+    </div>
   </div>
-
-  <div>
-    <ul class="users">
-      <li *ngFor="let user of users">
-        <button type="button">
-          <span class="badge">{{user.id}}</span>
-          <span class="name">{{user.username}}</span>
-        </button>
-      </li>
-    </ul>
-  </div>
-
 </div>

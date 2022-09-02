@@ -8,11 +8,28 @@ export interface User{
   "firstname": string,
   "lastname": string,
   "address": string,
-  "userPermissions": string[],
-  "machines": string[]
+  "userPermissions": Permission[],
+  "machines": Machine[]
 }
 
 export interface Permission{
   "id": number,
+  "username": string,
+  "permissionName": string
+}
+export interface PermissionFront{
+  "id": number,
   "name": string
 }
+
+export interface Machine{
+  "id": number,
+  "name": string,
+  "dateCreated": string,
+  "status": string,
+  "active": string
+}
+
+
+
+

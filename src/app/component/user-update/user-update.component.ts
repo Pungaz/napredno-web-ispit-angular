@@ -1,15 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../service/user.service";
 import {Permission, PermissionFront} from "../../model";
+import {ActivatedRoute} from "@angular/router";
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css']
+  selector: 'app-user-update',
+  templateUrl: './user-update.component.html',
+  styleUrls: ['./user-update.component.css']
 })
-export class UserCreateComponent {
+export class UserUpdateComponent implements OnInit, OnDestroy {
   userCreateForm: FormGroup;
+  sub: Subscription | undefined;
+  id: number | undefined;
 
   AllAvailablePermissions: Array<PermissionFront> = [
     {name: 'Create user', id: 1},
@@ -24,7 +28,7 @@ export class UserCreateComponent {
     {name: 'Search machine', id: 5}
   ];
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private _ActivatedRoute: ActivatedRoute,) {
     this.userCreateForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -35,15 +39,27 @@ export class UserCreateComponent {
     })
   }
 
-  createUser() {
+  ngOnInit() {
+    this.sub = this._ActivatedRoute.paramMap.subscribe(params => {
+      this.id = Number(params.get('id'));
+    });
+  }
+
+  ngOnDestroy() {
+    // @ts-ignore
+    this.sub.unsubscribe();
+  }
+
+  updateUser() {
     let permissions: Permission[] = [];
     for (const permission of this.userCreateForm.get('permissions')?.value) {
-      if (permission != null){
+      if (permission != null) {
         permissions.push(permission);
       }
     }
 
-    this.userService.create(
+    this.userService.update(
+      this.id,
       this.userCreateForm.get('username')?.value,
       this.userCreateForm.get('password')?.value,
       this.userCreateForm.get('firstname')?.value,
@@ -53,7 +69,7 @@ export class UserCreateComponent {
     ).subscribe(response => {
         this.userCreateForm.reset();
       }, (error: any) => {
-      alert(error.error)
+        alert(error.error)
       }
     )
   }

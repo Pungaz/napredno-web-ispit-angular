@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanActivate} from '@angular/router';
+import {CanActivate, Router} from '@angular/router';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {AuthService} from "../../service/auth.service";
 
@@ -7,7 +7,7 @@ import {AuthService} from "../../service/auth.service";
   providedIn: 'root'
 })
 export class CanReadUsersGuard implements CanActivate {
-  constructor(public authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   canActivate(): boolean {
@@ -18,6 +18,7 @@ export class CanReadUsersGuard implements CanActivate {
     }
 
     alert("You don't have the permission to do that");
+    this.router.navigate(['home']);
     return false;
   }
 }

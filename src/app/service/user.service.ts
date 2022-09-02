@@ -13,8 +13,19 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  create(username: string, password: string, firstname: string, lastname: string, address: string, permissions: Permission[]): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>(`${this.BASE_URL}/create`, {
+  create(username: string, password: string, firstname: string, lastname: string, address: string, permissions: Permission[]): Observable<User> {
+    return this.httpClient.post<User>(`${this.BASE_URL}/create`, {
+      username: username.trim(),
+      password: password.trim(),
+      firstname: firstname.trim(),
+      lastname: lastname.trim(),
+      address: address.trim(),
+      permissions: permissions,
+    })
+  }
+
+  update(id: number | undefined, username: string, password: string, firstname: string, lastname: string, address: string, permissions: Permission[]): Observable<User> {
+    return this.httpClient.put<User>(`${this.BASE_URL}/update/${id}`, {
       username: username.trim(),
       password: password.trim(),
       firstname: firstname.trim(),

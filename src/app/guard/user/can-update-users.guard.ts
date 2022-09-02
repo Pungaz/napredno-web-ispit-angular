@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthService} from "../../service/auth.service";
 
@@ -7,7 +7,7 @@ import {AuthService} from "../../service/auth.service";
   providedIn: 'root'
 })
 export class CanUpdateUsersGuard implements CanActivate {
-  constructor(public authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   canActivate(): boolean {
@@ -18,6 +18,7 @@ export class CanUpdateUsersGuard implements CanActivate {
     }
 
     alert("You don't have the permission to do that");
+    this.router.navigate(['home']);
     return false;
   }
 

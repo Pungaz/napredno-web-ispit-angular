@@ -30,8 +30,6 @@ export class LoginService {
       let token = this.jwtHelper.decodeToken(loginResponse.jwt);
       let permissionsArray: string[] = token["Permissions"];
 
-      console.log(permissionsArray)
-
       if (permissionsArray != null && permissionsArray != []) {
         for (const permission of permissionsArray) {
           // @ts-ignore
