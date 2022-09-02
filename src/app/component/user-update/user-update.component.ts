@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../service/user.service";
 import {Permission, PermissionFront} from "../../model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,7 +28,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
     {name: 'Search machine', id: 5}
   ];
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private _ActivatedRoute: ActivatedRoute,) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private _ActivatedRoute: ActivatedRoute, private router: Router) {
     this.userCreateForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -68,6 +68,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
       permissions
     ).subscribe(response => {
         this.userCreateForm.reset();
+        this.router.navigate(['/user/read']);
       }, (error: any) => {
         alert(error.error)
       }

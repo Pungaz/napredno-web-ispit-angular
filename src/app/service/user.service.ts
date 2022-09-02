@@ -35,6 +35,12 @@ export class UserService {
     })
   }
 
+  delete(id: number | undefined): Observable<void>{
+    return this.httpClient.delete<void>(`${this.BASE_URL}/delete/${id}`);
+  }
+
+
+
   read(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.BASE_URL}/read`, {
     })
