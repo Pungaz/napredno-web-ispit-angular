@@ -15,6 +15,8 @@ export class CanSearchMachinesGuard implements CanActivate {
     if (permissionsArray.indexOf('can_search_machines') > -1) {
       return true;
     }
+
+    alert("You don't have the permission to do that");
     return false;
   }
 }

@@ -23,8 +23,8 @@ export class JwtInterceptorService implements HttpInterceptor {
   private setHeader(request: HttpRequest<any>, token: string): HttpRequest<any> {
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+  }
     });
     return request;
   }

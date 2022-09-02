@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../service/user.service";
+import {Permission} from "../../model";
 
 @Component({
   selector: 'app-user-create',
@@ -10,18 +11,17 @@ import {UserService} from "../../service/user.service";
 export class UserCreateComponent {
   userCreateForm: FormGroup;
 
-  AllAvailablePermissions: Array<any> = [
-    {name: 'Create user', value: '1'},
-    {name: 'Delete user', value: '4'},
-    {name: 'Read user', value: '2'},
-    {name: 'Update user', value: '3'},
-    {name: 'Create machine', value: '9'},
-    {name: 'Destroy machine ', value: '10'},
-    {name: 'Start machine', value: '6'},
-    {name: 'Stop machine', value: '7'},
-    {name: 'Restart machine', value: '8'},
-    {name: 'Search machine', value: '5'},
-
+  AllAvailablePermissions: Array<Permission> = [
+    {name: 'Create user', id: 1},
+    {name: 'Delete user', id: 4},
+    {name: 'Read user', id: 2},
+    {name: 'Update user', id: 3},
+    {name: 'Create machine', id: 9},
+    {name: 'Destroy machine ', id: 10},
+    {name: 'Start machine', id: 6},
+    {name: 'Stop machine', id: 7},
+    {name: 'Restart machine', id: 8},
+    {name: 'Search machine', id: 5}
   ];
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
@@ -31,20 +31,27 @@ export class UserCreateComponent {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       address: ['', Validators.required],
-      permissions: this.formBuilder.array([])
+      permissions: this.formBuilder.array([], Validators.required)
     })
   }
 
   createUser() {
+    let permissions: Permission[] = [];
+    for (const permission of this.userCreateForm.get('permissions')?.value) {
+      if (permission != null){
+        permissions.push(permission);
+      }
+    }
+
     this.userService.create(
       this.userCreateForm.get('username')?.value,
       this.userCreateForm.get('password')?.value,
       this.userCreateForm.get('firstname')?.value,
       this.userCreateForm.get('lastname')?.value,
       this.userCreateForm.get('address')?.value,
-      this.userCreateForm.get('permissions')?.value,
+      permissions
     ).subscribe(response => {
-        this.userCreateForm.reset()
+        this.userCreateForm.reset();
       }, (error: any) => {
       alert(error.error)
       }
@@ -52,7 +59,7 @@ export class UserCreateComponent {
   }
 
   onCheckboxChange(e: any) {
-    const checkArray: FormArray = this.userCreateForm.get('permissions') as FormArray;
+    let checkArray: FormArray = this.userCreateForm.get('permissions') as FormArray;
     if (e.target.checked) {
       checkArray.push(new FormControl(e.target.value));
     } else {

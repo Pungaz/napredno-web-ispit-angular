@@ -6,12 +6,14 @@ import {LoginComponent} from "./component/login/login.component";
 import {UserCreateComponent} from "./component/user-create/user-create.component";
 import {CanReadUsersGuard} from "./guard/user/can-read-users.guard";
 import {CanCreateUsersGuard} from "./guard/user/can-create-users.guard";
+import {UserReadComponent} from "./component/user-read/user-read.component";
 
 const routes: Routes = [
 
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user/create', component: UserCreateComponent, canActivate: [AuthGuard, CanCreateUsersGuard]},
+  {path: 'user/read', component: UserReadComponent, canActivate: [AuthGuard, CanReadUsersGuard]},
 
 
   // {path: '**', component: PageNotFoundComponent}

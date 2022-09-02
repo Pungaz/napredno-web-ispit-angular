@@ -5,10 +5,10 @@ import {LoginService} from "../../service/login.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class HeaderComponent {
+export class NavbarComponent {
   title = 'napredno-web-ispit-angular';
 
   constructor(private loginService: LoginService, private authService: AuthService, private router: Router) {

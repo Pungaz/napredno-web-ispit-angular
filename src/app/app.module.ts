@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
-import {HeaderComponent} from './component/app/header.component';
+import {NavbarComponent} from './component/app/navbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from './component/login/login.component';
@@ -16,13 +16,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {UserCreateComponent} from './component/user-create/user-create.component';
 import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
 import {JwtInterceptorService} from "./interceptor/jwt-interceptor.service";
+import { UserReadComponent } from './component/user-read/user-read.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
+    NavbarComponent,
     HomeComponent,
     LoginComponent,
     UserCreateComponent,
+    UserReadComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import {JwtInterceptorService} from "./interceptor/jwt-interceptor.service";
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
     JwtHelperService
-  ], bootstrap: [HeaderComponent]
+  ], bootstrap: [NavbarComponent]
 })
 export class AppModule {
 }

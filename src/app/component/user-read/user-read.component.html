@@ -1,0 +1,20 @@
+<div *ngIf="users">
+  <div *ngFor="let user of users" class="container-fluid">
+    <ul>
+      <li>{{user.id}}, {{user.firstname}}, {{user.lastname}}, {{user.username}}, {{user.address}}, {{user.userPermissions}}, {{user.machines}}</li>
+      <br>
+    </ul>
+  </div>
+
+  <div>
+    <ul class="users">
+      <li *ngFor="let user of users">
+        <button type="button">
+          <span class="badge">{{user.id}}</span>
+          <span class="name">{{user.username}}</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+</div>

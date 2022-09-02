@@ -15,6 +15,8 @@ export class CanCreateUsersGuard implements CanActivate {
     if (permissionsArray.indexOf('can_create_users') > -1) {
       return true;
     }
+
+    alert("You don't have the permission to do that");
     return false;
   }
 }

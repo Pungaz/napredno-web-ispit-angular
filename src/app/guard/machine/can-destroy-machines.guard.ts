@@ -15,6 +15,8 @@ export class CanDestroyMachinesGuard implements CanActivate {
     if (permissionsArray.indexOf('can_destroy_machines') > -1) {
       return true;
     }
+
+    alert("You don't have the permission to do that");
     return false;
   }
 }
