@@ -30,6 +30,11 @@ export class LoginComponent {
           if (loginResponse.jwt != "") {
             this.loginService.setLoggedIn(loginResponse);
             this.router.navigate(['/']);
+
+            if (this.authService.getPermissions() == []){
+              alert("You have no permissions");
+            }
+
           }
         }, (error: any) => {
           alert(error.error)

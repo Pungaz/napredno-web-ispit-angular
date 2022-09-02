@@ -8,7 +8,7 @@ import {LoginResponse} from "../model";
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public jwtHelper: JwtHelperService, private loginService: LoginService) {
+  constructor(public jwtHelper: JwtHelperService) {
   }
 
   public isAuthenticated(): boolean {
@@ -35,6 +35,18 @@ export class AuthService {
 
   public getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  public getCurrentUserId(): string {
+    const loggedIn = localStorage.getItem('STATE');
+    const token = this.getToken();
+
+    if (token && loggedIn) {
+      let jwt = this.jwtHelper.decodeToken(token);
+
+      return jwt.userId;
+    }
+    return '';
   }
 
 

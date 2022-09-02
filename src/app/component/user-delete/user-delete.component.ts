@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {Permission} from "../../model";
 import {UserService} from "../../service/user.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-user-delete',
@@ -13,7 +13,8 @@ export class UserDeleteComponent implements OnInit {
   sub: Subscription | undefined;
   id: number | undefined;
 
-  constructor(private _ActivatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private _ActivatedRoute: ActivatedRoute, private userService: UserService, private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -23,13 +24,24 @@ export class UserDeleteComponent implements OnInit {
   }
 
   deleteUser(): void {
-    this.userService.delete(this.id).subscribe(response => {
-        this.router.navigate(['/user/read']);
-      }, (error: any) => {
-      console.log(error.error)
-        alert(error.error)
-      }
-    )
+    let currentUserId: number = Number(this.getCurrentUserId());
+
+    if (currentUserId != this.id){
+      this.userService.delete(this.id).subscribe(response => {
+          this.router.navigate(['/user/read']);
+        }, (error: any) => {
+          console.log(error.error)
+          alert(error.error)
+        }
+      )
+  }else {
+      alert("You can't delete yourself");
+      this.router.navigate(['/user/read']);
+    }
+  }
+
+  getCurrentUserId(): string {
+    return this.authService.getCurrentUserId();
   }
 
 }
