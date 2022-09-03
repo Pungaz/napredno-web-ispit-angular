@@ -1,1 +1,17 @@
-<p>machine-create works!</p>
+<div class="container-fluid">
+  <form [formGroup]="machineCreateForm" (submit)="createMachine()" class="mb-5">
+
+    <div class="form-group" style="padding-bottom: 20px">
+      <label for="name">Machine name</label>
+      <input type="name" class="form-control" id="name" placeholder="Name" [formControlName]="'name'">
+      <div class="error-message text-danger" *ngIf="machineCreateForm.get('name')?.errors?.['required']">Name is
+        required!
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+
+

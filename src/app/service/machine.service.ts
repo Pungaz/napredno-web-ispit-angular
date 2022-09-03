@@ -41,6 +41,12 @@ export class MachineService {
     return this.httpClient.put<void>(`${this.BASE_URL}/restart/${machineId}`, {})
   }
 
+  create(name: string): Observable<Machine>{
+    return this.httpClient.post<Machine>(`${this.BASE_URL}/create`, {
+      name: name.trim()
+    })
+  }
+
   delete(machineId: number){
     return this.httpClient.put(`${this.BASE_URL}/destroy/${machineId}`, {}, { responseType: 'text' })
   }

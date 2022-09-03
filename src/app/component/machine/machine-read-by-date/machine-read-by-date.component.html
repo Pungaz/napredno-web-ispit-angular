@@ -36,17 +36,25 @@
           <div style="display: inline-block; width: 50%" class="mat-button">
             <ul>
               <li>
-                <button *ngIf="this.canStartMachines()" type="button" class="btn mat-button" (click)="startMachine(machine.id)">Start</button>
+                <button *ngIf="this.canStartMachines()" type="button" class="btn mat-button"
+                        (click)="startMachine(machine.id)">Start
+                </button>
               </li>
               <li>
-                <button *ngIf="this.canStopMachines()" type="button" class="btn mat-button" (click)="stopMachine(machine.id)">Stop</button>
+                <button *ngIf="this.canStopMachines()" type="button" class="btn mat-button"
+                        (click)="stopMachine(machine.id)">Stop
+                </button>
               </li>
               <li>
-                <button *ngIf="this.canRestartMachines()" type="button" class="btn mat-button" (click)="restartMachine(machine.id)">Restart</button>
+                <button *ngIf="this.canRestartMachines()" type="button" class="btn mat-button"
+                        (click)="restartMachine(machine.id)">Restart
+                </button>
+              </li>
+              <li>
+                <button *ngIf="this.canDestroyMachines()" type="button" class="btn mat-button"
+                        (click)="deleteMachine(machine.id)">Delete
+                </button>
 
-              </li>
-              <li>
-                <button *ngIf="this.canDestroyMachines()" type="button" class="btn mat-button" (click)="deleteMachine(machine.id)">Delete</button>
               </li>
             </ul>
           </div>

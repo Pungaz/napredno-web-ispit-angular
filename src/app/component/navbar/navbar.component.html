@@ -4,11 +4,14 @@
       <a [routerLink]="''" class="navbar-brand">Home</a>
       <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a [routerLink]="'user/create'" class="nav-link active" aria-current="page">Create a new user</a>
-          <a [routerLink]="'user/read'" class="nav-link active" aria-current="page">Read all users</a>
+
+          <a [routerLink]="'/user/create'" class="nav-link active" aria-current="page">Create a new user</a>
+          <a [routerLink]="'/user/read'" class="nav-link active" aria-current="page">Read all users</a>
+          <a [routerLink]="'/machine/create'" class="nav-link active" aria-current="page">Create a new machine</a>
 
           <div ngbDropdown class="d-inline-block" style="margin-left: 5px; margin-right: 10px">
             <button type="button" class="mat-button" style="color: white" id="dropdownBasic1" ngbDropdownToggle>Search
+              for machines
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <a [routerLink]="'/machine/read'" class="nav-link active" style="color: black" aria-current="page">Find
