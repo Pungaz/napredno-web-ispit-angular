@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../service/user.service";
-import {Permission, PermissionFront} from "../../model";
+import {UserService} from "../../../service/user.service";
+import {Permission, PermissionFront} from "../../../model";
 
 @Component({
   selector: 'app-user-create',
@@ -35,10 +35,10 @@ export class UserCreateComponent {
     })
   }
 
-  createUser() {
+  createUser(): void {
     let permissions: Permission[] = [];
     for (const permission of this.userCreateForm.get('permissions')?.value) {
-      if (permission != null){
+      if (permission != null) {
         permissions.push(permission);
       }
     }
@@ -53,7 +53,7 @@ export class UserCreateComponent {
     ).subscribe(response => {
         this.userCreateForm.reset();
       }, (error: any) => {
-      alert(error.error)
+        alert(error.error)
       }
     )
   }

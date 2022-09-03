@@ -1,0 +1,52 @@
+<div class="container-fluid">
+
+  <div class="container-fluid" style="margin-top: 10px">
+    <input #machineName (keyup)="readByName(machineName.value)" placeholder="Machine name">
+  </div>
+
+  <div *ngIf="machines" class="container-fluid">
+    <div *ngFor="let machine of machines" class="container-fluid">
+      <div style="display: inline-block; width: 50%">
+        <ul>
+          <li>
+            <div style="display: inline-block; width: 50%">
+              <div>Id: {{machine.id}}</div>
+              <div>Created at: {{machine.dateCreated}} </div>
+              <div>User id: {{machine.userId}}</div>
+              <div>Name: {{machine.name}} </div>
+              <div>Status: {{machine.status}}</div>
+            </div>
+
+            <div style="display: inline-block; width: 50%" class="mat-button">
+              <ul>
+                <li>
+                  <button *ngIf="this.canStartMachines()" type="button" class="btn mat-button"
+                          (click)="startMachine(machine.id)">Start
+                  </button>
+                </li>
+                <li>
+                  <button *ngIf="this.canStopMachines()" type="button" class="btn mat-button"
+                          (click)="stopMachine(machine.id)">Stop
+                  </button>
+                </li>
+                <li>
+                  <button *ngIf="this.canRestartMachines()" type="button" class="btn mat-button"
+                          (click)="restartMachine(machine.id)">Restart
+                  </button>
+                </li>
+                <li>
+                  <button *ngIf="this.canDestroyMachines()" type="button" class="btn mat-button"
+                          (click)="deleteMachine(machine.id)">Delete
+                  </button>
+
+                </li>
+              </ul>
+            </div>
+
+          </li>
+          <br>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

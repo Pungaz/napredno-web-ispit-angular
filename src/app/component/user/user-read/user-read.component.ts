@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
-import {User} from "../../model";
-import {CanUpdateUsersGuard} from "../../guard/user/can-update-users.guard";
-import {AuthService} from "../../service/auth.service";
+import {UserService} from "../../../service/user.service";
+import {User} from "../../../model";
+import {CanUpdateUsersGuard} from "../../../guard/user/can-update-users.guard";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-user-read',

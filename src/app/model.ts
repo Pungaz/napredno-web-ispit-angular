@@ -24,10 +24,12 @@ export interface PermissionFront{
 
 export interface Machine{
   "id": number,
+  "userId": number,
   "name": string,
   "dateCreated": string,
   "status": string,
-  "active": string
+  "active": string,
+  "available": string
 }
 
 

@@ -1,0 +1,49 @@
+<header>
+  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a [routerLink]="''" class="navbar-brand">Home</a>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a [routerLink]="'user/create'" class="nav-link active" aria-current="page">Create a new user</a>
+          <a [routerLink]="'user/read'" class="nav-link active" aria-current="page">Read all users</a>
+
+          <div ngbDropdown class="d-inline-block" style="margin-left: 5px; margin-right: 10px">
+            <button type="button" class="mat-button" style="color: white" id="dropdownBasic1" ngbDropdownToggle>Search
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a [routerLink]="'/machine/read'" class="nav-link active" style="color: black" aria-current="page">Find
+                all machines
+              </a>
+
+              <a [routerLink]="'/machine/read/name'" class="nav-link active" style="color: black" aria-current="page">
+                Find machine by name
+              </a>
+
+              <a [routerLink]="'/machine/read/status'" class="nav-link active" style="color: black" aria-current="page">
+                Find machines by status
+              </a>
+
+              <a [routerLink]="'/machine/read/date'" class="nav-link active" style="color: black" aria-current="page">
+                Find machines by date
+              </a>
+            </div>
+          </div>
+
+          <a *ngIf="!this.isLoggedIn()" [routerLink]="'login'" class="btn btn-primary float-end"
+             style="margin-left: 400px"
+             aria-current="page">Login
+          </a>
+          <button *ngIf="this.isLoggedIn()" (click)="logout()" type="button" class="btn btn-primary float-end"
+                  style="margin-left: 400px">Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<body>
+<router-outlet></router-outlet>
+</body>
+

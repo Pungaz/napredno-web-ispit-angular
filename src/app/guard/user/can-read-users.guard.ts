@@ -18,7 +18,7 @@ export class CanReadUsersGuard implements CanActivate {
     }
 
     alert("You don't have the permission to do that");
-    this.router.navigate(['home']);
+    this.router.navigate(['']);
     return false;
   }
 }

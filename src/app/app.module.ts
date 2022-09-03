@@ -1,24 +1,32 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {AppRoutingModule} from './app-routing.module';
-import {NavbarComponent} from './component/app/navbar.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {LoginComponent} from './component/login/login.component';
+import {NavbarComponent} from "./component/navbar/navbar.component";
+import {UserCreateComponent} from "./component/user/user-create/user-create.component";
+import {MachineReadComponent} from "./component/machine/machine-read/machine-read.component";
+import {MachineReadByDateComponent} from "./component/machine/machine-read-by-date/machine-read-by-date.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HomeComponent} from "./component/home/home.component";
-import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatSliderModule} from "@angular/material/slider";
-import {MatRippleModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {UserCreateComponent} from './component/user-create/user-create.component';
-import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+import {LoginComponent} from "./component/login/login.component";
+import {UserUpdateComponent} from "./component/user/user-update/user-update.component";
+import {
+  MachineReadByStatusComponent
+} from "./component/machine/machine-read-by-status/machine-read-by-status.component";
+import {UserDeleteComponent} from "./component/user/user-delete/user-delete.component";
+import {MachineReadByNameComponent} from "./component/machine/machine-read-by-name/machine-read-by-name.component";
+import {UserReadComponent} from "./component/user/user-read/user-read.component";
+import {HomeComponent} from "./component/home/home.component";
+import {NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {AppRoutingModule} from "./app-routing.module";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
+import {MatSliderModule} from "@angular/material/slider";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {JwtInterceptorService} from "./interceptor/jwt-interceptor.service";
-import { UserReadComponent } from './component/user-read/user-read.component';
-import { UserUpdateComponent } from './component/user-update/user-update.component';
-import { UserDeleteComponent } from './component/user-delete/user-delete.component';
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {MachineCreateComponent} from './component/machine/machine-create/machine-create.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [
@@ -29,6 +37,11 @@ import { UserDeleteComponent } from './component/user-delete/user-delete.compone
     UserReadComponent,
     UserUpdateComponent,
     UserDeleteComponent,
+    MachineReadComponent,
+    MachineReadByNameComponent,
+    MachineReadByStatusComponent,
+    MachineReadByDateComponent,
+    MachineCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +58,9 @@ import { UserDeleteComponent } from './component/user-delete/user-delete.compone
     HttpClientJsonpModule,
     BrowserAnimationsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [],
   providers: [

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../service/user.service";
-import {Permission, PermissionFront} from "../../model";
+import {UserService} from "../../../service/user.service";
+import {Permission, PermissionFront} from "../../../model";
 import {ActivatedRoute, Router} from "@angular/router";
 import { Subscription } from 'rxjs';
 

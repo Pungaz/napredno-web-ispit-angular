@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {UserService} from "../../service/user.service";
-import {AuthService} from "../../service/auth.service";
+import {UserService} from "../../../service/user.service";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-user-delete',
