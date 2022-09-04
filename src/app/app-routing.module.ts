@@ -19,6 +19,9 @@ import {
 import {MachineReadByDateComponent} from "./component/machine/machine-read-by-date/machine-read-by-date.component";
 import {MachineCreateComponent} from "./component/machine/machine-create/machine-create.component";
 import {CanCreateMachinesGuard} from "./guard/machine/can-create-machines.guard";
+import {
+  MachineScheduleActionComponent
+} from "./component/machine/machine-schedule-action/machine-schedule-action.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -32,6 +35,8 @@ const routes: Routes = [
   {path: 'machine/read/status', component: MachineReadByStatusComponent, canActivate: [AuthGuard, CanReadMachinesGuard]},
   {path: 'machine/read/date', component: MachineReadByDateComponent, canActivate: [AuthGuard, CanReadMachinesGuard]},
   {path: 'machine/create', component: MachineCreateComponent, canActivate: [AuthGuard, CanCreateMachinesGuard]},
+  {path: 'machine/schedule/:id', component: MachineScheduleActionComponent, canActivate: [AuthGuard]},
+
 
   // {path: '**', component: PageNotFoundComponent}
 ];

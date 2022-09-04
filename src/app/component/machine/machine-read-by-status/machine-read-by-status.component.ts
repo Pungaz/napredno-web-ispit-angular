@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {Machine} from "../../../model";
 import {MachineService} from "../../../service/machine.service";
 import {AuthService} from "../../../service/auth.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
 
 enum CheckBoxType { RUNNING, STOPPED, NONE};
 
@@ -17,9 +16,7 @@ export class MachineReadByStatusComponent {
 
   machines: Machine[] | undefined;
 
-  constructor(private machineService: MachineService, private authService: AuthService, private formBuilder: FormBuilder) {
-
-  }
+  constructor(private machineService: MachineService, private authService: AuthService) {}
 
   selectCheckBox(targetType: CheckBoxType) {
     if (this.currentlyChecked === targetType) {
@@ -46,7 +43,7 @@ export class MachineReadByStatusComponent {
   }
 
   startMachine(machineId: number): void {
-    this.machineService.start(machineId).subscribe(response => {
+    this.machineService.start(machineId, null).subscribe(response => {
       }, (error: any) => {
         alert(error.error)
       }
@@ -54,7 +51,7 @@ export class MachineReadByStatusComponent {
   }
 
   stopMachine(machineId: number): void {
-    this.machineService.stop(machineId).subscribe(response => {
+    this.machineService.stop(machineId, null).subscribe(response => {
       }, (error: any) => {
         alert(error.error)
       }
@@ -62,7 +59,7 @@ export class MachineReadByStatusComponent {
   }
 
   restartMachine(machineId: number): void {
-    this.machineService.restart(machineId).subscribe(response => {
+    this.machineService.restart(machineId, null).subscribe(response => {
       }, (error: any) => {
         alert(error.error)
       }
@@ -76,6 +73,10 @@ export class MachineReadByStatusComponent {
         alert(error.error);
       }
     )
+  }
+
+  canAny(): boolean {
+    return this.canStartMachines() || this.canStopMachines() || this.canRestartMachines();
   }
 
   canStartMachines(): boolean {

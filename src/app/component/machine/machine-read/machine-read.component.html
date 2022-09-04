@@ -18,26 +18,16 @@
               </li>
               <li>
                 <button *ngIf="this.canStopMachines()" type="button" class="btn mat-button" (click)="stopMachine(machine.id)">Stop</button>
-
-<!--                <a *ngIf="this.canStopMachines()" [routerLink]="['/machine/stop', machine.id]" class="alert-link"-->
-<!--                   aria-current="page">Stop-->
-<!--                </a>-->
               </li>
               <li>
                 <button *ngIf="this.canRestartMachines()" type="button" class="btn mat-button" (click)="restartMachine(machine.id)">Restart</button>
-
-<!--                <a *ngIf="this.canRestartMachines()" [routerLink]="['/machine/restart', machine.id]"-->
-<!--                   class="alert-link"-->
-<!--                   aria-current="page">Restart-->
-<!--                </a>-->
               </li>
               <li>
                 <button *ngIf="this.canDestroyMachines()" type="button" class="btn mat-button" (click)="deleteMachine(machine.id)">Delete</button>
-
-<!--                <a *ngIf="this.canDestroyMachines()" [routerLink]="['/machine/destroy', machine.id]"-->
-<!--                   class="alert-link"-->
-<!--                   aria-current="page">Delete-->
-<!--                </a>-->
+              </li>
+              <li>
+                <a *ngIf="this.canAny()" [routerLink]="['/machine/schedule/', machine.id]" class="alert-link"
+                   aria-current="page">Schedule action</a>
               </li>
             </ul>
           </div>

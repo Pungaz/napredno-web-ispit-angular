@@ -38,7 +38,10 @@
                   <button *ngIf="this.canDestroyMachines()" type="button" class="btn mat-button"
                           (click)="deleteMachine(machine.id)">Delete
                   </button>
-
+                </li>
+                <li>
+                  <a *ngIf="this.canAny()" [routerLink]="['/machine/schedule/', machine.id]" class="alert-link"
+                     aria-current="page">Schedule action</a>
                 </li>
               </ul>
             </div>

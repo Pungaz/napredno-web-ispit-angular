@@ -27,6 +27,7 @@ import {JwtInterceptorService} from "./interceptor/jwt-interceptor.service";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {MachineCreateComponent} from './component/machine/machine-create/machine-create.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { MachineScheduleActionComponent } from './component/machine/machine-schedule-action/machine-schedule-action.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MachineReadByStatusComponent,
     MachineReadByDateComponent,
     MachineCreateComponent,
+    MachineScheduleActionComponent,
   ],
   imports: [
     BrowserModule,

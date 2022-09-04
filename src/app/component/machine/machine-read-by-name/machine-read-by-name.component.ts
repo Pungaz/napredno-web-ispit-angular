@@ -28,7 +28,7 @@ export class MachineReadByNameComponent {
   }
 
   startMachine(machineId: number): void {
-    this.machineService.start(machineId).subscribe(response => {
+    this.machineService.start(machineId, null).subscribe(response => {
       }, (error: any) => {
         alert(error.error)
       }
@@ -36,7 +36,7 @@ export class MachineReadByNameComponent {
   }
 
   stopMachine(machineId: number): void {
-    this.machineService.stop(machineId).subscribe(response => {
+    this.machineService.stop(machineId, null).subscribe(response => {
       }, (error: any) => {
         alert(error.error)
       }
@@ -44,7 +44,7 @@ export class MachineReadByNameComponent {
   }
 
   restartMachine(machineId: number): void {
-    this.machineService.restart(machineId).subscribe(response => {
+    this.machineService.restart(machineId, null).subscribe(response => {
       }, (error: any) => {
         alert(error.error)
       }
@@ -57,6 +57,10 @@ export class MachineReadByNameComponent {
         alert(error.error)
       }
     )
+  }
+
+  canAny(): boolean{
+    return this.canStartMachines() || this.canStopMachines() || this.canRestartMachines();
   }
 
   canStartMachines(): boolean {

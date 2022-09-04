@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {Machine, User} from "../model";
+import {Machine} from "../model";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 
@@ -29,26 +29,26 @@ export class MachineService {
     return this.httpClient.get<Machine[]>(`${this.BASE_URL}/search/date/${startingDate}/${endingDate}`, {})
   }
 
-  start(machineId: number): Observable<void> {
-    return this.httpClient.put<void>(`${this.BASE_URL}/start/${machineId}`, {})
+  start(machineId: number | undefined, time: number | null): Observable<void> {
+    return this.httpClient.put<void>(`${this.BASE_URL}/start/${machineId}?time=${time}`, {})
   }
 
-  stop(machineId: number): Observable<void> {
-    return this.httpClient.put<void>(`${this.BASE_URL}/stop/${machineId}`, {})
+  stop(machineId: number | undefined, time: number | null): Observable<void> {
+    return this.httpClient.put<void>(`${this.BASE_URL}/stop/${machineId}?time=${time}`, {})
   }
 
-  restart(machineId: number): Observable<void> {
-    return this.httpClient.put<void>(`${this.BASE_URL}/restart/${machineId}`, {})
+  restart(machineId: number | undefined, time: number | null): Observable<void> {
+    return this.httpClient.put<void>(`${this.BASE_URL}/restart/${machineId}?time=${time}`, {})
   }
 
-  create(name: string): Observable<Machine>{
+  create(name: string): Observable<Machine> {
     return this.httpClient.post<Machine>(`${this.BASE_URL}/create`, {
       name: name.trim()
     })
   }
 
-  delete(machineId: number){
-    return this.httpClient.put(`${this.BASE_URL}/destroy/${machineId}`, {}, { responseType: 'text' })
+  delete(machineId: number) {
+    return this.httpClient.put(`${this.BASE_URL}/destroy/${machineId}`, {}, {responseType: 'text'})
   }
 
 }

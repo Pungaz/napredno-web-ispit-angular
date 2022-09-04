@@ -1,0 +1,28 @@
+<form *ngIf="canAny()" [formGroup]="machineScheduleActionForm" (submit)="scheduleAction()" class="container-fluid">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter a date and time to schedule an action</mat-label>
+    <mat-date-input [formGroup]="machineScheduleActionForm">
+      <input matInput type="datetime-local" placeholder="start date" formControlName="date">
+    </mat-date-input>
+  </mat-form-field>
+
+  <div>
+    <div *ngIf="canStartMachines()">
+      Schedule start <input type="checkbox" name="running" [checked]="currentlyChecked === check_box_type.start"
+                            (click)="selectCheckBox(check_box_type.start)">
+    </div>
+    <br>
+    <div *ngIf="canStopMachines()">
+      Schedule stop <input type="checkbox" name="stopped" [checked]="currentlyChecked === check_box_type.stop"
+                           (click)="selectCheckBox(check_box_type.stop)">
+    </div>
+    <br>
+    <div *ngIf="canRestartMachines()">
+      Schedule restart <input type="checkbox" name="stopped" [checked]="currentlyChecked === check_box_type.restart"
+                              (click)="selectCheckBox(check_box_type.restart)">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
