@@ -28,6 +28,7 @@ import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {MachineCreateComponent} from './component/machine/machine-create/machine-create.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { MachineScheduleActionComponent } from './component/machine/machine-schedule-action/machine-schedule-action.component';
+import { ErrorMessageComponent } from './component/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MachineScheduleActionComponent } from './component/machine/machine-sche
     MachineReadByDateComponent,
     MachineCreateComponent,
     MachineScheduleActionComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,

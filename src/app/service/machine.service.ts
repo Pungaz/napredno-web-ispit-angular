@@ -30,15 +30,28 @@ export class MachineService {
   }
 
   start(machineId: number | undefined, time: number | null): Observable<void> {
-    return this.httpClient.put<void>(`${this.BASE_URL}/start/${machineId}?time=${time}`, {})
+    if (time) {
+      return this.httpClient.put<void>(`${this.BASE_URL}/start/${machineId}?time=${time}`, {})
+    } else {
+      return this.httpClient.put<void>(`${this.BASE_URL}/start/${machineId}`, {})
+    }
   }
 
   stop(machineId: number | undefined, time: number | null): Observable<void> {
-    return this.httpClient.put<void>(`${this.BASE_URL}/stop/${machineId}?time=${time}`, {})
+    if (time) {
+      return this.httpClient.put<void>(`${this.BASE_URL}/stop/${machineId}?time=${time}`, {})
+    } else {
+      return this.httpClient.put<void>(`${this.BASE_URL}/stop/${machineId}`, {})
+    }
   }
 
   restart(machineId: number | undefined, time: number | null): Observable<void> {
-    return this.httpClient.put<void>(`${this.BASE_URL}/restart/${machineId}?time=${time}`, {})
+    if (time) {
+      return this.httpClient.put<void>(`${this.BASE_URL}/restart/${machineId}?time=${time}`, {})
+    } else {
+      return this.httpClient.put<void>(`${this.BASE_URL}/restart/${machineId}`, {})
+    }
+
   }
 
   create(name: string): Observable<Machine> {

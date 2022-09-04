@@ -2,7 +2,7 @@ export interface LoginResponse {
   "jwt": string
 }
 
-export interface User{
+export interface User {
   "id": number,
   "username": string,
   "firstname": string,
@@ -12,17 +12,18 @@ export interface User{
   "machines": Machine[]
 }
 
-export interface Permission{
+export interface Permission {
   "id": number,
   "username": string,
   "permissionName": string
 }
-export interface PermissionFront{
+
+export interface PermissionFront {
   "id": number,
   "name": string
 }
 
-export interface Machine{
+export interface Machine {
   "id": number,
   "userId": number,
   "name": string,
@@ -30,6 +31,14 @@ export interface Machine{
   "status": string,
   "active": string,
   "available": string
+}
+
+export interface ErrorMessage {
+  "id": number,
+  "machineId": number,
+  "timestamp": number,
+  "operation": string,
+  "message": string
 }
 
 

@@ -7,7 +7,8 @@ export const environment = {
 
   authApi: 'http://localhost:8080/auth',
   userApi: 'http://localhost:8080/user',
-  machineApi: 'http://localhost:8080/machine'
+  machineApi: 'http://localhost:8080/machine',
+  errorApi: 'http://localhost:8080/error'
 };
 
 /*

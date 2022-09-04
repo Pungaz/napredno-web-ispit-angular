@@ -22,6 +22,7 @@ import {CanCreateMachinesGuard} from "./guard/machine/can-create-machines.guard"
 import {
   MachineScheduleActionComponent
 } from "./component/machine/machine-schedule-action/machine-schedule-action.component";
+import {ErrorMessageComponent} from "./component/error-message/error-message.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -32,11 +33,15 @@ const routes: Routes = [
   {path: 'user/delete/:id', component: UserDeleteComponent, canActivate: [AuthGuard, CanUpdateUsersGuard]},
   {path: 'machine/read', component: MachineReadComponent, canActivate: [AuthGuard, CanReadMachinesGuard]},
   {path: 'machine/read/name', component: MachineReadByNameComponent, canActivate: [AuthGuard, CanReadMachinesGuard]},
-  {path: 'machine/read/status', component: MachineReadByStatusComponent, canActivate: [AuthGuard, CanReadMachinesGuard]},
+  {
+    path: 'machine/read/status',
+    component: MachineReadByStatusComponent,
+    canActivate: [AuthGuard, CanReadMachinesGuard]
+  },
   {path: 'machine/read/date', component: MachineReadByDateComponent, canActivate: [AuthGuard, CanReadMachinesGuard]},
   {path: 'machine/create', component: MachineCreateComponent, canActivate: [AuthGuard, CanCreateMachinesGuard]},
   {path: 'machine/schedule/:id', component: MachineScheduleActionComponent, canActivate: [AuthGuard]},
-
+  {path: 'error', component: ErrorMessageComponent, canActivate: [AuthGuard]},
 
   // {path: '**', component: PageNotFoundComponent}
 ];

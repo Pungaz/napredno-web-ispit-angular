@@ -31,7 +31,7 @@ export class LoginComponent {
             this.loginService.setLoggedIn(loginResponse);
             this.router.navigate(['/']);
 
-            if (this.authService.getPermissions() == []){
+            if (this.authService.getPermissions().length == 0){
               alert("You have no permissions");
             }
 

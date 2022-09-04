@@ -32,6 +32,8 @@
             </div>
           </div>
 
+          <a [routerLink]="'/error'" class="nav-link active" aria-current="page">Errors</a>
+
           <a *ngIf="!this.isLoggedIn()" [routerLink]="'login'" class="btn btn-primary float-end"
              style="margin-left: 400px"
              aria-current="page">Login

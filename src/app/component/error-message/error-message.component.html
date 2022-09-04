@@ -1,0 +1,14 @@
+<div *ngIf="errorMessages" class="container-fluid">
+  <div *ngFor="let errorMessage of errorMessages" class="container-fluid">
+    <ul>
+      <li>
+        <div>Id: {{errorMessage.id}}</div>
+        <div>Machine Id: {{errorMessage.machineId}}</div>
+        <div>Operation: {{errorMessage.operation}} </div>
+        <div>Date: {{errorMessage.timestamp | date: 'dd-MM-yyyy'}}</div>
+        <div>Message: {{errorMessage.message}} </div>
+      </li>
+      <br>
+    </ul>
+  </div>
+</div>
